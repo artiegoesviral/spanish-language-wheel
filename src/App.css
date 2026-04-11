@@ -1,0 +1,59 @@
+body {
+  font-family: sans-serif;
+  background: #f4f6f8;
+  text-align: center;
+}
+
+.app {
+  padding: 20px;
+}
+
+.wheel-container {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  margin: 0 auto;
+}
+
+.wheel {
+  border-radius: 50%;
+  background: #4a90e2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+}
+
+.wheel-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 0 0;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cell {
+  flex: 1;
+  font-size: 14px;
+}
