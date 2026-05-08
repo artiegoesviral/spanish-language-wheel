@@ -63,7 +63,10 @@ function Wheel({ verbs, rotation, setRotation, setSelectedIndex }: WheelProps) {
   const handleMouseMove = (e: MouseEvent | TouchEvent | React.MouseEvent | React.TouchEvent) => {
     if (!dragging.current) return;
 
-    const rect = wheelRef.current.getBoundingClientRect();
+    const wheel = wheelRef.current;
+    if (!wheel) return;
+
+    const rect = wheel.getBoundingClientRect();
     const { clientX, clientY } = getClientPosition(e);
 
     const x = clientX - rect.left;
