@@ -1,8 +1,26 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./styles.css";
 import { verbs } from "./verbs.tsx";
 
-function Wheel({ verbs, rotation, setRotation, setSelectedIndex }) {
+type Conjugations = Record<string, string>;
+
+type Verb = {
+  infinitive: string;
+  english?: string;
+  present: Conjugations;
+  future: Conjugations;
+  perfect: string;
+  indefinite: Conjugations;
+};
+
+type WheelProps = {
+  verbs: Verb[];
+  rotation: number;
+  setRotation: React.Dispatch<React.SetStateAction<number>>;
+  setSelectedIndex: React.Dispatch<React.SetStateAction<number>>;
+};
+
+function Wheel({ verbs, rotation, setRotation, setSelectedIndex }: WheelProps) {
   const wheelRef = useRef(null);
   const dragging = useRef(false);
   const startAngle = useRef(0);
@@ -11,7 +29,7 @@ function Wheel({ verbs, rotation, setRotation, setSelectedIndex }) {
   const center = size / 2;
   const radius = size * 0.36;
 
-  const getClientPosition = (e) => {
+  const getClientPosition = (e: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
     const point = "touches" in e ? e.touches[0] : e;
     return {
       clientX: point.clientX,
@@ -19,17 +37,17 @@ function Wheel({ verbs, rotation, setRotation, setSelectedIndex }) {
     };
   };
 
-  const getSelectedIndexFromRotation = (rot) => {
+  const getSelectedIndexFromRotation = (rot: number) => {
     const anglePerItem = 360 / verbs.length;
     const normalized = ((270 - rot) % 360 + 360) % 360;
 
     return Math.round(normalized / anglePerItem) % verbs.length;
   };
 
-  const getAngle = (x, y) =>
+  const getAngle = (x: number, y: number) =>
     Math.atan2(y - center, x - center) * (180 / Math.PI);
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     dragging.current = true;
 
     const rect = wheelRef.current.getBoundingClientRect();
@@ -41,7 +59,7 @@ function Wheel({ verbs, rotation, setRotation, setSelectedIndex }) {
     startAngle.current = getAngle(x, y) - rotation;
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent | TouchEvent | React.MouseEvent | React.TouchEvent) => {
     if (!dragging.current) return;
 
     const rect = wheelRef.current.getBoundingClientRect();
@@ -135,7 +153,7 @@ function Wheel({ verbs, rotation, setRotation, setSelectedIndex }) {
 
 const tenses = ['present', 'future', 'perfect', 'indefinite'];
 
-function ConjugationDisplay({ verb }) {
+function ConjugationDisplay({ verb }: { verb: Verb }) {
   return (
     <div className="center">
       <h2>{verb.infinitive}</h2>
