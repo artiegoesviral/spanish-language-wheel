@@ -2,6 +2,7 @@ body {
     font-family: sans-serif;
     background: #f4f6f8;
     text-align: center;
+    margin: 0;
 }
 
 .app {
@@ -10,50 +11,157 @@ body {
 
 .wheel-container {
     position: relative;
-    width: 800px;
-    height: 800px;
+    width: 950px;
+    height: 950px;
     margin: 0 auto;
+    z-index: 1;
 }
 
 .wheel {
-    border-radius: 50%;
-    background: #4a90e2;
     position: absolute;
     top: 0;
     left: 0;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: #4a90e2;
     cursor: grab;
+    user-select: none;
+    touch-action: none;
+    z-index: 1;
+}
+
+.wheel:active {
+    cursor: grabbing;
+}
+
+.slice {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0% 0%;
+}
+
+.divider {
+    position: absolute;
+    left: 0;
+    top: -400px;
+    width: 2px;
+    height: 800px;
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .wheel-item {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform-origin: 0 0;
+    left: 0;
+    top: 0;
+    width: 130px;
+    text-align: center;
     color: white;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    transform-origin: center;
 }
 
 .center {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 500px;
+    width: 580px;
+    max-height: 560px;
     transform: translate(-50%, -50%);
     background: white;
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 20px;
+    z-index: 20;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+}
+
+.center h2 {
+    margin-top: 0;
+    font-size: 28px;
+}
+
+.tense-box {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #f9fafb;
+    padding: 12px;
+    margin: 12px 0;
+}
+
+.tense-box h3 {
+    margin: 0 0 10px;
+    text-transform: capitalize;
 }
 
 .row {
     display: flex;
-    justify-content: space-between;
     gap: 10px;
-    margin-top: 10px;
+    justify-content: space-between;
 }
 
 .cell {
     flex: 1;
+    background: white;
+    border-radius: 8px;
+    padding: 8px;
     font-size: 14px;
+}
+
+.perfect-form {
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.pointer-arrow {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 28px solid #222;
+    z-index: 30;
+}
+
+.page-buttons {
+    position: relative;
+    z-index: 100;
+    margin-bottom: 20px;
+}
+
+.page-buttons button {
+    margin: 0 10px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #4a90e2;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    pointer-events: auto;
+}
+
+.page-buttons button:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+
+.translation {
+    margin-top: -10px;
+    margin-bottom: 16px;
+    font-size: 18px;
+    color: #666;
+    font-style: italic;
 }
