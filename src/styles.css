@@ -11,10 +11,9 @@ body {
 
 .wheel-container {
     position: relative;
-    width: 950px;
-    height: 950px;
+    width: min(95vw, 950px);
+    height: min(95vw, 950px);
     margin: 0 auto;
-    z-index: 1;
 }
 
 .wheel {
@@ -164,4 +163,27 @@ body {
     font-size: 18px;
     color: #666;
     font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .center {
+        width: 70%;
+        max-height: 55%;
+        padding: 14px;
+    }
+
+    .wheel-item {
+        font-size: 10px;
+        width: 70px;
+    }
+
+    .cell {
+        font-size: 11px;
+        padding: 4px;
+    }
+
+    .tense-box {
+        padding: 8px;
+    }
 }

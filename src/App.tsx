@@ -25,7 +25,11 @@ function Wheel({ verbs, rotation, setRotation, setSelectedIndex }: WheelProps) {
   const dragging = useRef(false);
   const startAngle = useRef(0);
 
-  const size = 950;
+  const size =
+    typeof window !== "undefined"
+      ? Math.min(window.innerWidth * 0.95, 950)
+      : 950;
+
   const center = size / 2;
   const radius = size * 0.36;
 
