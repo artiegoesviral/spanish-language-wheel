@@ -9,7 +9,7 @@ type Verb = {
   english?: string;
   present: Conjugations;
   future: Conjugations;
-  perfect: string;
+  perfect: Conjugations;
   indefinite: Conjugations;
 };
 
@@ -21,7 +21,7 @@ type WheelProps = {
 };
 
 function Wheel({ verbs, rotation, setRotation, setSelectedIndex }: WheelProps) {
-  const wheelRef = useRef(null);
+  const wheelRef = useRef<HTMLDivElement | null>(null);
   const dragging = useRef(false);
   const startAngle = useRef(0);
 
@@ -50,6 +50,7 @@ function Wheel({ verbs, rotation, setRotation, setSelectedIndex }: WheelProps) {
   const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     dragging.current = true;
 
+    if (!wheelRef.current) return;
     const rect = wheelRef.current.getBoundingClientRect();
     const { clientX, clientY } = getClientPosition(e);
 
@@ -151,7 +152,12 @@ function Wheel({ verbs, rotation, setRotation, setSelectedIndex }: WheelProps) {
   );
 }
 
-const tenses = ['present', 'future', 'perfect', 'indefinite'];
+const tenses: Array<keyof Pick<Verb, "present" | "future" | "perfect" | "indefinite">> = [
+  "present",
+  "future",
+  "perfect",
+  "indefinite",
+];
 
 function ConjugationDisplay({ verb }: { verb: Verb }) {
   return (
