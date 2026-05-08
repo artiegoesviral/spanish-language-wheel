@@ -2,6 +2,9 @@
 
 An interactive Spanish verb conjugation wheel built with React + Vite.
 
+### Live App
+https://artiegoesviral.github.io/spanish-language-wheel/
+
 Users can:
 
 * Spin a draggable verb wheel
