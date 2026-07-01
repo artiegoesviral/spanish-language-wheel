@@ -47,7 +47,6 @@ Displays:
 * Vite
 * CSS
 * GitHub Pages
-* GitHub Actions
 
 ---
 
