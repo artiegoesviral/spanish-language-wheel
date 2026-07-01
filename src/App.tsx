@@ -30,8 +30,8 @@ function Wheel({ verbs, rotation, setRotation, setSelectedIndex }: WheelProps) {
       ? Math.min(window.innerWidth * 0.95, 950)
       : 950;
 
-  const radius = size * 0.36;
   const center = size / 2;
+  const radius = size * 0.36;
 
   const getClientPosition = (e: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
     const point = "touches" in e ? e.touches[0] : e;
