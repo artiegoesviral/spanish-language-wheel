@@ -1,4 +1,4 @@
-# Spanish Verb Wheel
+# Spanish Language Wheel
 
 An interactive Spanish verb conjugation wheel built with React + Vite.
 
